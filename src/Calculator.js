@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles.css'; // Make sure to have your CSS file in the correct directory
+import './styles.css';
 
 const Calculator = () => {
   const [displayValue, setDisplayValue] = useState('0');
@@ -33,7 +33,7 @@ const Calculator = () => {
         <button onClick={() => appendToDisplay('8')}>8</button>
         <button onClick={() => appendToDisplay('9')}>9</button>
         <button onClick={() => appendToDisplay('+')}>+</button>
-        {/* ...rest of the buttons with respective onClick handlers */}
+        
         <button onClick={clearDisplay}>C</button>
         <button onClick={() => appendToDisplay('0')}>0</button>
         <button onClick={calculateResult}>=</button>

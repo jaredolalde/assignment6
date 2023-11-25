@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>React Calculator</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+    function Calculator() {
+      const [displayValue, setDisplayValue] = React.useState('');
+
+      const appendToDisplay = (value) => {
+        setDisplayValue(prevValue => prevValue + value);
+      };
+
+      const clearDisplay = () => {
+        setDisplayValue('');
+      };
+
+      const calculateResult = () => {
+        if (displayValue === '') {
+          return;
+        }
+
+        try {
+          const result = eval(displayValue);
+          setDisplayValue(String(result));
+        } catch (error) {
+          setDisplayValue('Error');
+        }
+      };
+
+      return (
+        <div className="calculator">
+          <div className="display" id="display">{displayValue || '0'}</div>
+          <div className="buttons">
+            <button onClick={() => appendToDisplay('7')}>7</button>
+            <button onClick={() => appendToDisplay('8')}>8</button>
+            <button onClick={() => appendToDisplay('9')}>9</button>
+            <button onClick={() => appendToDisplay('+')}>+</button>
+            <button onClick={() => appendToDisplay('4')}>4</button>
+            <button onClick={() => appendToDisplay('5')}>5</button>
+            <button onClick={() => appendToDisplay('6')}>6</button>
+            <button onClick={() => appendToDisplay('-')}>-</button>
+            <button onClick={() => appendToDisplay('1')}>1</button>
+            <button onClick={() => appendToDisplay('2')}>2</button>
+            <button onClick={() => appendToDisplay('3')}>3</button>
+            <button onClick={() => appendToDisplay('*')}>*</button>
+            <button onClick={clearDisplay}>C</button>
+            <button onClick={() => appendToDisplay('0')}>0</button>
+            <button onClick={calculateResult}>=</button>
+            <button onClick={() => appendToDisplay('/')}>/</button>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.render(
+      <Calculator />,
+      document.getElementById('root')
+    );
+  </script>
+</body>
+</html>
